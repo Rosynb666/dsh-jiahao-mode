@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0] - 2026-10-24
+
+### Added
+- HUD 面板内三档嘴臭切换：屏息 / 小声豪 / 放开豪。
+- Host 新接口 `POST /jiahao/api/tone`，写回 volatile 配置，下一轮请求立即生效。
+- `/jiahao/api/state` 返回当前档位。
+
 ## [0.2.0] - 2026-10-24
 
 ### Added
