@@ -1,6 +1,6 @@
 {
   "name": "dsh-jiahao-mode",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "嘉豪模式：给 DeepSeek Harness 的威龙绝活哥人设插件。四条准则、三档嘴臭、豪气值面板、击杀播报、结算卡、人设互斥。",
   "type": "module",
   "main": "lib/index.mjs",
