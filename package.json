@@ -1,7 +1,7 @@
 {
   "name": "dsh-jiahao-mode",
-  "version": "0.1.0",
-  "description": "嘉豪模式：给 DeepSeek Harness 的威龙绝活哥人设插件。四条行为准则、三档嘴臭、与其它人设互斥，活照干、豪照放。",
+  "version": "0.2.0",
+  "description": "嘉豪模式：给 DeepSeek Harness 的威龙绝活哥人设插件。四条准则、三档嘴臭、豪气值面板、击杀播报、结算卡、人设互斥。",
   "type": "module",
   "main": "lib/index.mjs",
   "files": [
@@ -14,7 +14,8 @@
   "exports": {
     ".": "./lib/index.mjs",
     "./cordis.patch.yml": "./cordis.patch.yml",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./client": "./lib/client.js"
   },
   "scripts": {
     "test": "node --test test/*.test.mjs"
@@ -22,6 +23,10 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true
     }
   },
   "dependencies": {

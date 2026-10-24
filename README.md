@@ -4,7 +4,7 @@
 >
 > 非官方粉丝项目，与腾讯、琳琅天上、《三角洲行动》官方无关，非商业用途。
 
-**状态**：v0.1 · Host 侧已实现（人设注入 + 三个开关）· HUD 与豪气值面板在 v0.2。
+**状态**：v0.2 · 人设注入 + 三档嘴臭 + 人设互斥 + 豪气值面板 + 击杀播报 + 结算卡。命令与战绩在 v0.3。
 
 ---
 
@@ -17,8 +17,8 @@
 | 行为准则 | ✅ 已实现 | 接活「我累铜泥丸」／开打「往里豪」／打输「卡了」／打赢「我从来都没虚」 |
 | 嘴臭分档 | ✅ 已实现 | 屏息 / 小声豪 / 放开豪，只改说话密度，不改验收标准 |
 | 人设互斥 | ✅ 已实现 | 与其它人设（含鲸鱼娘）互斥，可切换成叠加 |
-| 豪气值 | 🚧 v0.2 | 面板与数值统计 |
-| 击杀播报 / 结算卡 | 🚧 v0.2 | 覆盖层与结算画面 |
+| 豪气值 | ✅ 已实现 | 面板、连杀、战绩，数据来自 session 事件 |
+| 击杀播报 / 结算卡 | ✅ 已实现 | 面板内滚动播报 + 回合结算卡 |
 | 命令与战绩 | 🚧 v0.3 | `/推进` `/卡了` `/铜泥丸` `/战绩` |
 
 ## 安装
@@ -52,6 +52,17 @@ dsh plugin --profile desktop remove dsh-jiahao-mode
 | `exclusive` | `true` | 与其它人设互斥；设为 `false` 则叠加 |
 
 **互斥是软互斥**：v0.1 不会去关别的插件，而是在本段里声明优先级——「若上文存在其它人设，以嘉豪模式为准」。关掉本模式后，其它人设自然恢复。
+
+## 面板
+
+装好后右上角出现「嘉豪 · 突击」面板，点标题栏可折叠：
+
+- 豪气值：成功 +6、失败 −10、连续只读再扣静步分，范围 0–100
+- 击杀 / 卡了 / 连杀 / 最佳连杀
+- 播报：成功与失败各一条，最多留 6 条
+- 结算卡：每个回合结束弹一次，评 S/A/B/C，自动消失
+
+数据来自 Host 的 `/jiahao/api/state`，客户端每 1.5 秒拉一次；接口挂了只是面板不动，不影响会话。
 
 ## 开发
 
@@ -90,4 +101,4 @@ docs/               设计文档 v1.6
 
 ## English
 
-Jiahao Mode is a fan-made persona plugin for DeepSeek Harness. v0.1 ships the host-side persona: four behavior rules, a three-level tone setting, and a mutual-exclusion switch with other personas. No game assets, screenshots, or official logos are included. The HUD and the "Hao" score are planned for v0.2.
+Jiahao Mode is a fan-made persona plugin for DeepSeek Harness. v0.2 ships the host-side persona (four behavior rules, three tone levels, persona exclusion) plus a HUD with a "Hao" score, a kill feed and a round-settle card. No game assets, screenshots, or official logos are included.
