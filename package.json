@@ -39,5 +39,17 @@
     "persona",
     "jiahao"
   ],
+  "engines": {
+    "node": ">=22"
+  },
+  "author": "Rosynb666",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rosynb666/dsh-jiahao-mode.git"
+  },
+  "homepage": "https://github.com/Rosynb666/dsh-jiahao-mode#readme",
+  "bugs": {
+    "url": "https://github.com/Rosynb666/dsh-jiahao-mode/issues"
+  },
   "license": "MIT"
 }
