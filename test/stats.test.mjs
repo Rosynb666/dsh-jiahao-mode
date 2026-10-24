@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { applyEvent, createStats, gradeOf, snapshot, START_HAO } from '../lib/stats.mjs'
+import { applyCareer, applyEvent, bestGrade, createStats, emptyCareer, gradeOf, markLagged, snapshot, START_HAO } from '../lib/stats.mjs'
 
 const call = (callId, name) => ({ type: 'tool/call', data: { callId, name, arguments: {} } })
 const result = (callId, isError = false) => ({
@@ -81,4 +81,28 @@ test('快照只带最后 8 条播报', () => {
   assert.equal(snap.feed.length, 8)
   assert.equal(snap.kills, 12)
   assert.ok(snap.seq >= 12)
+})
+
+test('生涯累计：回合、击杀、评级分布', () => {
+  let career = emptyCareer()
+  career = applyCareer(career, { kills: 3, fails: 0, grade: 'A', bestStreak: 2 })
+  career = applyCareer(career, { kills: 0, fails: 1, grade: 'C', bestStreak: 0 })
+  assert.equal(career.turns, 2)
+  assert.equal(career.kills, 3)
+  assert.equal(career.fails, 1)
+  assert.equal(career.bestStreak, 2)
+  assert.equal(career.grades.A, 1)
+  assert.equal(career.grades.C, 1)
+  assert.equal(bestGrade(career), 'A')
+})
+
+test('markLagged：清连杀与只读计数，不扣分', () => {
+  const s = createStats()
+  s.streak = 5
+  s.readRun = 3
+  const hao = s.hao
+  markLagged(s)
+  assert.equal(s.streak, 0)
+  assert.equal(s.readRun, 0)
+  assert.equal(s.hao, hao)
 })
