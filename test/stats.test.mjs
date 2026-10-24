@@ -56,6 +56,14 @@ test('回合结束：产出结算并清零回合计数', () => {
   assert.equal(s.turnKills, 0)
 })
 
+test('真实消息形状：toolCallId 在 message 顶层也能取到工具名', () => {
+  const s = createStats()
+  applyEvent(s, call('c9', 'edit'))
+  applyEvent(s, { type: 'tool/result', data: { message: { toolCallId: 'c9', content: [], isError: false } } })
+  assert.equal(s.feed.at(-1).tool, 'edit')
+  assert.match(s.feed.at(-1).text, /edit/)
+})
+
 test('评级规则', () => {
   assert.equal(gradeOf({ kills: 3, fails: 0, hao: 80 }), 'S')
   assert.equal(gradeOf({ kills: 1, fails: 0, hao: 40 }), 'A')
