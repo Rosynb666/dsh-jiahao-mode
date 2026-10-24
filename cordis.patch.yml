@@ -1,0 +1,12 @@
+# dsh-jiahao-mode bundle patch：向 profile 注入嘉豪模式插件行。
+# Host half 在 lib/index.mjs：注册 `jiahao:mode` 人设段，并提供三个 volatile 配置
+# （enabled / tone / exclusive），设置里改完即时生效，无需重启插件。
+#
+# 想改默认值就在 profile 自己的补丁层里按 id 覆盖，不要改本文件（升级会被覆盖）。
+- insert:
+    - id: jiahao-mode
+      name: 'dsh-jiahao-mode'
+      # config:
+      #   enabled: true
+      #   tone: normal      # quiet | normal | loud
+      #   exclusive: true   # 与鲸鱼娘等其它人设互斥
